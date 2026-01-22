@@ -1,8 +1,20 @@
 import { FormControl, InputAdornment, InputLabel, MenuItem, Select, Stack, TextField } from "@mui/material";
 
 import SearchIcon from "@mui/icons-material/Search";
+import { useMemo } from "react";
 
-export default function ProductFilter() {
+export default function ProductFilter({filteredProducts,search,Products}) {
+
+
+  filteredProducts = useMemo(()=>{
+
+  const result = Products.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+
+  return result
+
+ },[search])
+
+
   return (
     <Stack sx={{ margin: "50px" }} direction={'row'} spacing={3}>
       <TextField
